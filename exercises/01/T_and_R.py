@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.constants import speed_of_light, epsilon_0, mu_0
 
 eta_0 = np.sqrt(mu_0/epsilon_0)
@@ -43,16 +42,20 @@ class Panel:
             (phi[0,0]*eta_0 + phi[0,1] - phi[1,0]*eta_0**2 - phi[1,1]*eta_0) / \
             self._den(omega)
 
-plt.figure()
-omega = np.linspace(1e2, 1e10, 1e2+1) * 2 * np.pi
-plt.plot(omega, np.abs(Panel(10e-3,  5,   .0).R(omega)))
-plt.plot(omega, np.abs(Panel(10e-3,  5,   .0).T(omega)))
 
-plt.figure()
-omega = np.logspace(2, 10, 1e2+1) * 2 * np.pi
-plt.loglog(omega, np.abs(Panel(10e-6,  1, 50e3).T(omega)))
-plt.loglog(omega, np.abs(Panel(100e-6, 1, 50e3).T(omega)))
+if __name__ == "__main__":
+    import matplotlib.pyplot as plt
 
-plt.show()
+    plt.figure()
+    omega = np.linspace(1e2, 1e10, 1e2+1) * 2 * np.pi
+    plt.plot(omega, np.abs(Panel(10e-3,  5,   .0).R(omega)))
+    plt.plot(omega, np.abs(Panel(10e-3,  5,   .0).T(omega)))
 
-print('=== Program finished ===')
+    plt.figure()
+    omega = np.logspace(2, 10, 1e2+1) * 2 * np.pi
+    plt.loglog(omega, np.abs(Panel(10e-6,  1, 50e3).T(omega)))
+    plt.loglog(omega, np.abs(Panel(100e-6, 1, 50e3).T(omega)))
+
+    plt.show()
+
+    print('=== Program finished ===')
